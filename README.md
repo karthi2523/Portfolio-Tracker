@@ -61,7 +61,7 @@ mvn spring-boot:run
 git clone <frontend-repo-url>
 cd portfolio_frontend
 
-REACT_APP_API_URL=https://your-backend-url.com/api
+REACT_APP_API_URL=(https://portfolio-backend-vt4g.onrender.com/)
 
 npm install
 
