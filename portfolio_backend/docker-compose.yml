@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  mysql-db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 2523
+      MYSQL_DATABASE: portfolio_tracker
+    ports:
+      - "3307:3306"  # Expose MySQL on port 3307
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - portfolio-network
+
+  spring-boot-app:
+    build: .  # Ensure the Dockerfile is in the same directory as docker-compose.yml
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/portfolio_tracker
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 2523
+    ports:
+      - "8080:8080"  # Expose port 8080 for Spring Boot application
+    depends_on:
+      - mysql-db
+    volumes:
+      - ./target/portfolio_backend-0.0.1-SNAPSHOT.jar:/app/portfolio_backend-0.0.1-SNAPSHOT.jar
+    command: "java -jar /app/portfolio_backend-0.0.1-SNAPSHOT.jar"  # Run the JAR file
+    networks:
+      - portfolio-network
+
+networks:
+  portfolio-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
