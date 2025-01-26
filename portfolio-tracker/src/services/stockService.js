@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/api/stocks';
+const API_URL = 'https://portfolio-backend-vt4g.onrender.com/api/stocks';
 
 export const getAllStocks = async () => {
   try {

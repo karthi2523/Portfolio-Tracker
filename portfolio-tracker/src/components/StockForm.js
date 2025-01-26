@@ -49,7 +49,7 @@ const StockForm = ({ onSave, selectedStock, clearSelection }) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
 
-    // Automatically fetch ticker when stock name changes
+    
     if (name === 'name' && value.trim().length > 0) {
       fetchTicker(value.trim());
     }
