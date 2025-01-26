@@ -30,7 +30,7 @@ const StockList = ({ stocks, onEdit, onDelete }) => {
   const API_KEY = "cua74spr01qkpes4cacgcua74spr01qkpes4cad0";
   const BASE_URL = "https://finnhub.io/api/v1";
 
-  // Fetch current stock prices from Finnhub API
+ 
   useEffect(() => {
     const fetchStockPrices = async () => {
       const priceData = {};
@@ -42,7 +42,7 @@ const StockList = ({ stocks, onEdit, onDelete }) => {
               token: API_KEY,
             },
           });
-          const price = response.data.c; // Current price
+          const price = response.data.c; 
           if (price) {
             priceData[stock.ticker] = parseFloat(price);
           }
@@ -56,7 +56,7 @@ const StockList = ({ stocks, onEdit, onDelete }) => {
     fetchStockPrices();
   }, [stocks]);
 
-  // Calculate portfolio value based on current stock prices
+
   useEffect(() => {
     const calculatePortfolioValue = () => {
       let total = 0;
@@ -106,7 +106,6 @@ const StockList = ({ stocks, onEdit, onDelete }) => {
         Portfolio Stock List
       </Typography>
 
-      {/* Portfolio Value */}
       <Typography variant="h6" align="center" color="textSecondary" style={{ marginBottom: '20px' }}>
         Total Portfolio Value: ${totalPortfolioValue.toFixed(2)}
       </Typography>
